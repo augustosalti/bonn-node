@@ -5,10 +5,11 @@ const path = require('path');
 const options = {};
 middlewares();
 const app = express();
-const http = require('http').createServer(options, app);
+const http = require('https').createServer(options, app);
 require('./mongo/mongo');
 const mongo = require('./mongo/mongo')
 
+//enable cors for all origins
 ////////////////////////////////////////////////
 function middlewares() {
     const corsOptions = {
@@ -28,7 +29,6 @@ app.get('/', (req, res)=>{
     res.send('Hola! Corriendo server chat on PORT 3003');
 });
 let userList = new Map();
-io.set('origins', '*');
 io.on('connection', (socket) =>{
     let host = socket.handshake.headers.origin;
     let id = socket.id;
