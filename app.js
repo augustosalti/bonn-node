@@ -28,7 +28,7 @@ app.get('/', (req, res)=>{
     res.send('Hola! Corriendo server chat on PORT 3003');
 });
 let userList = new Map();
-
+io.set('origins', '*');
 io.on('connection', (socket) =>{
     let host = socket.handshake.headers.origin;
     let id = socket.id;
