@@ -31,10 +31,6 @@ let userList = new Map();
 
 io.on('connection', (socket) =>{
     let host = socket.handshake.headers.origin;
-	if(host!=process.env.HOST && host!='http://localhost:4200'){
-        console.log("Access denied");
-        return "Access denied";
-    }
     let id = socket.id;
     let id_cliente = socket.handshake.query.id_cliente;
     let tipo = socket.handshake.query.tipo; //0 admin | 1 cliente
@@ -45,7 +41,7 @@ io.on('connection', (socket) =>{
         id_cliente,
         tipo
     }
-    mongo.insertMongoAcceso(userData);
+    //mongo.insertMongoAcceso(userData);
 
     addUser(id, userData);
 
