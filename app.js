@@ -48,7 +48,7 @@ io.on('connection', (socket) =>{
         id_cliente,
         tipo
     }
-    //mongo.insertMongoAcceso(userData);
+    mongo.insertMongoAcceso(userData);
 
     addUser(id, userData);
 
@@ -68,9 +68,10 @@ io.on('connection', (socket) =>{
 
     socket.on('disconnect', function(){
         console.log("/////////////////////////////////////////");
+        //socket.emit('user-disconnect', id);
         removeUser(id);
         socket.to(sala).emit('user-list', [...userList.keys()] );
-        socket.to(sala).emit('user-disconnect', id);
+        //socket.to(sala).emit('user-disconnect', id);
         console.log("/////////////////////////////////////////");
     });
 
